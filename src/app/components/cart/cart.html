@@ -16,9 +16,11 @@
             <p class="cart-subtitle">{{cartItems.length}} items in your cart</p>
         </div>
 
-        <div class="cart-main" *ngIf="cartItems.length > 0; else emptyCart">
+        @if (cartItems.length > 0) {
+        <div class="cart-main">
             <div class="cart-items">
-                <div class="cart-item" *ngFor="let item of cartItems">
+                @for (item of cartItems; track item.id) {
+                <div class="cart-item">
                     <div class="item-image">
                         <img [src]="item.image" [alt]="item.title">
                     </div>
@@ -47,6 +49,7 @@
                         <i class="fas fa-trash"></i>
                     </button>
                 </div>
+                }
             </div>
 
             <div class="cart-summary">
@@ -65,8 +68,11 @@
 
                     <div class="summary-line">
                         <span>Shipping</span>
-                        <span *ngIf="shipping === 0" class="free-shipping">FREE</span>
-                        <span *ngIf="shipping > 0">${{shipping.toFixed(2)}}</span>
+                        @if (shipping === 0) {
+                        <span class="free-shipping">FREE</span>
+                        } @else {
+                        <span>${{shipping.toFixed(2)}}</span>
+                        }
                     </div>
 
                     <div class="summary-divider"></div>
@@ -93,22 +99,22 @@
                 </div>
             </div>
         </div>
-
-        <ng-template #emptyCart>
-            <div class="empty-cart">
-                <div class="empty-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <h2>Your cart is empty</h2>
-                <p>Looks like you haven't added anything to your cart yet.</p>
-                <a routerLink="/products" class="shop-now-btn">
-                    <i class="fas fa-shopping-bag"></i>
-                    Start Shopping
-                </a>
+        } @else {
+        <div class="empty-cart">
+            <div class="empty-icon">
+                <i class="fas fa-shopping-cart"></i>
             </div>
-        </ng-template>
+            <h2>Your cart is empty</h2>
+            <p>Looks like you haven't added anything to your cart yet.</p>
+            <a routerLink="/products" class="shop-now-btn">
+                <i class="fas fa-shopping-bag"></i>
+                Start Shopping
+            </a>
+        </div>
+        }
 
-        <div class="recommended-section" *ngIf="cartItems.length > 0">
+        @if (cartItems.length > 0) {
+        <div class="recommended-section">
             <h3>You might also like</h3>
             <div class="recommended-items">
                 @for (item of recommendedItems; track $index) {
@@ -121,6 +127,7 @@
                 }
             </div>
         </div>
+        }
     </div>
 
     <div class="cart-actions">
@@ -128,9 +135,11 @@
             <i class="fas fa-arrow-left"></i>
             Continue Shopping
         </a>
-        <button class="clear-cart-btn" *ngIf="cartItems.length > 0">
+        @if(cartItems.length > 0) {
+        <button class="clear-cart-btn">
             <i class="fas fa-trash-alt"></i>
             Clear Cart
         </button>
+        }
     </div>
 </div>

@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { Sproducts } from '../../services/sproducts';
 import { Iproductsdata } from '../../interfaces/iproductsdata';
 
@@ -11,7 +10,7 @@ interface CartItem extends Iproductsdata {
 
 @Component({
     selector: 'app-cart',
-    imports: [RouterLink, CommonModule],
+    imports: [RouterLink],
     templateUrl: './cart.html',
     styleUrl: './cart.css'
 })
