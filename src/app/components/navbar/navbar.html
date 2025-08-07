@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg modern-navbar">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/home">
+            <span class="brand-icon">🛍️</span>
+            <span class="brand-text">Astore</span>
+        </a>
+
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+            <span class="toggler-line"></span>
+            <span class="toggler-line"></span>
+            <span class="toggler-line"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/home" routerLinkActive="active-link"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/products" routerLinkActive="active-link">
+                        <i class="fas fa-boxes"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/contact" routerLinkActive="active-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navbar-actions">
+            <button class="action-btn search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="action-btn cart-btn" routerLink="/cart" routerLinkActive="active-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge">3</span>
+            </button>
+            <a class="login-btn" routerLink="/login" routerLinkActive="active-login">
+                <i class="fas fa-user"></i>
+                <span>Login</span>
+            </a>
+        </div>
+    </div>
+</nav>

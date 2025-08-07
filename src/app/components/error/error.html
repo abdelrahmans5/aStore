@@ -1,0 +1,53 @@
+<div class="error-container">
+    <div class="error-background">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+    </div>
+
+    <div class="error-content">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+
+        <div class="error-text-container">
+            <h1 class="error-code">404</h1>
+            <h2 class="error-title">Oops! Page Not Found</h2>
+            <p class="error-description">
+                The page you're looking for seems to have wandered off.
+                Don't worry, it happens to the best of us!
+            </p>
+        </div>
+
+        <div class="error-actions">
+            <a routerLink="/home" class="btn-primary">
+                <i class="fas fa-home"></i>
+                Back to Home
+            </a>
+            <button class="btn-secondary" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+                Go Back
+            </button>
+        </div>
+
+        <div class="helpful-links">
+            <h3>Maybe try one of these?</h3>
+            <div class="links-grid">
+                <a routerLink="/products" class="quick-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Shop Products</span>
+                </a>
+                <a routerLink="/contact" class="quick-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Us</span>
+                </a>
+                <a routerLink="/login" class="quick-link">
+                    <i class="fas fa-user"></i>
+                    <span>Login</span>
+                </a>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,136 @@
+<div class="cart-container">
+    <div class="cart-background">
+        <div class="cart-shapes">
+            <div class="cart-shape cart-shape-1"></div>
+            <div class="cart-shape cart-shape-2"></div>
+            <div class="cart-shape cart-shape-3"></div>
+        </div>
+    </div>
+
+    <div class="cart-content">
+        <div class="cart-header">
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h1 class="cart-title">Shopping Cart</h1>
+            <p class="cart-subtitle">{{cartItems.length}} items in your cart</p>
+        </div>
+
+        <div class="cart-main" *ngIf="cartItems.length > 0; else emptyCart">
+            <div class="cart-items">
+                <div class="cart-item" *ngFor="let item of cartItems">
+                    <div class="item-image">
+                        <img [src]="item.image" [alt]="item.title">
+                    </div>
+
+                    <div class="item-details">
+                        <h3 class="item-title">{{item.title}}</h3>
+                        <p class="item-category">{{item.category}}</p>
+                        <div class="item-price">${{item.price}}</div>
+                    </div>
+
+                    <div class="item-quantity">
+                        <button class="qty-btn" (click)="updateQuantity(item.id, -1)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <span class="qty-number">{{item.quantity}}</span>
+                        <button class="qty-btn" (click)="updateQuantity(item.id, 1)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <div class="item-total">
+                        ${{(item.price * item.quantity).toFixed(2)}}
+                    </div>
+
+                    <button class="remove-btn" (click)="removeItem(item.id)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-card">
+                    <h3 class="summary-title">Order Summary</h3>
+
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <span>${{subtotal.toFixed(2)}}</span>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Tax (8%)</span>
+                        <span>${{tax.toFixed(2)}}</span>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Shipping</span>
+                        <span *ngIf="shipping === 0" class="free-shipping">FREE</span>
+                        <span *ngIf="shipping > 0">${{shipping.toFixed(2)}}</span>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span>${{total.toFixed(2)}}</span>
+                    </div>
+
+                    <button class="checkout-btn" routerLink="/checkout">
+                        <i class="fas fa-credit-card"></i>
+                        Proceed to Checkout
+                    </button>
+
+                    <div class="payment-methods">
+                        <span class="payment-label">We accept:</span>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                            <i class="fab fa-paypal"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #emptyCart>
+            <div class="empty-cart">
+                <div class="empty-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h2>Your cart is empty</h2>
+                <p>Looks like you haven't added anything to your cart yet.</p>
+                <a routerLink="/products" class="shop-now-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    Start Shopping
+                </a>
+            </div>
+        </ng-template>
+
+        <div class="recommended-section" *ngIf="cartItems.length > 0">
+            <h3>You might also like</h3>
+            <div class="recommended-items">
+                @for (item of recommendedItems; track $index) {
+                <div class="recommended-item">
+                    <img [src]="item.image" [alt]="item.title">
+                    <h4>{{item.title}}</h4>
+                    <span class="rec-price">${{item.price.toFixed(2)}}</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-actions">
+        <a routerLink="/products" class="continue-shopping">
+            <i class="fas fa-arrow-left"></i>
+            Continue Shopping
+        </a>
+        <button class="clear-cart-btn" *ngIf="cartItems.length > 0">
+            <i class="fas fa-trash-alt"></i>
+            Clear Cart
+        </button>
+    </div>
+</div>

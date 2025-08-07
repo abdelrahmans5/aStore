@@ -1,0 +1,705 @@
+/* 
+═══════════════════════════════════════════════════════════════════════════
+    CHECKOUT PAGE STYLES
+═══════════════════════════════════════════════════════════════════════════
+    Complete checkout process with multi-step form, order summary, payment
+    methods, and secure transaction flow with animated backgrounds.
+═══════════════════════════════════════════════════════════════════════════
+*/
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MAIN CONTAINER & BACKGROUND
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Full viewport checkout container with gradient background */
+.checkout-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 6rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background decoration wrapper */
+.checkout-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Container for floating animated shapes */
+.checkout-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Individual floating shape element */
+.checkout-shape {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: checkoutFloat 12s ease-in-out infinite;
+}
+
+/* Shape positioning variants */
+.checkout-shape-1 {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.checkout-shape-2 {
+    width: 80px;
+    height: 80px;
+    top: 70%;
+    right: 10%;
+    animation-delay: 4s;
+}
+
+.checkout-shape-3 {
+    width: 160px;
+    height: 160px;
+    bottom: 15%;
+    left: 15%;
+    animation-delay: 8s;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MAIN CONTENT & HEADER
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Main content wrapper above background */
+.checkout-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: slideInUp 0.8s ease-out;
+}
+
+/* Checkout page header with glass morphism */
+.checkout-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 2.5rem;
+    color: white;
+}
+
+/* Animated shopping bag icon */
+.checkout-icon {
+    font-size: 3.5rem;
+    color: #fbbf24;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+/* Main checkout title with gradient text */
+.checkout-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0.5rem 0 2rem 0;
+    background: linear-gradient(45deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PROGRESS BAR & STEPS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Progress bar container */
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Individual progress step */
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active {
+    opacity: 1;
+    color: #fbbf24;
+}
+
+.progress-step.completed {
+    opacity: 1;
+    color: #10b981;
+}
+
+/* Step number circle */
+.step-number {
+    width: 40px;
+    height: 40px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.progress-step.completed .step-number {
+    background: #10b981;
+    border-color: #10b981;
+    color: white;
+}
+
+.progress-step.active .step-number {
+    background: #fbbf24;
+    border-color: #fbbf24;
+    color: #1f2937;
+}
+
+/* Step label text */
+.step-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Progress connecting line */
+.progress-line {
+    width: 60px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.progress-line.completed {
+    background: #10b981;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MAIN LAYOUT & FORM
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Two-column layout for form and summary */
+.checkout-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+/* Main checkout form with glass morphism */
+.checkout-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2.5rem;
+    color: white;
+}
+
+/* Individual form step with slide animation */
+.form-step {
+    animation: fadeInSlide 0.5s ease-out;
+}
+
+/* Step title */
+.step-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+/* Form field container */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Grid layout for form fields */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* Form field labels */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Input and select field styling */
+input,
+select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Placeholder text styling */
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Input focus states */
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #fbbf24;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+/* Checkbox group styling */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PAYMENT METHODS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Payment method selection container */
+.payment-methods {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Individual payment method option */
+.payment-method {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-method.active {
+    background: rgba(251, 191, 36, 0.2);
+    border-color: #fbbf24;
+    color: #fbbf24;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FORM NAVIGATION & BUTTONS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Form navigation container */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+/* Base button styling */
+.btn-primary,
+.btn-secondary,
+.btn-success {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+/* Primary action button (Next/Continue) */
+.btn-primary {
+    background: linear-gradient(45deg, #fbbf24, #f59e0b);
+    color: #1f2937;
+    margin-left: auto;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+}
+
+/* Secondary action button (Back) */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Success button (Complete Order) */
+.btn-success {
+    background: linear-gradient(45deg, #10b981, #059669);
+    color: white;
+    margin-left: auto;
+}
+
+.btn-success:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+/* Disabled button states */
+.btn-primary:disabled,
+.btn-success:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ORDER SUMMARY SIDEBAR
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Sticky order summary container */
+.order-summary {
+    position: sticky;
+    top: 6rem;
+    height: fit-content;
+}
+
+/* Order summary card with glass morphism */
+.summary-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    color: white;
+}
+
+/* Summary section title */
+.summary-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+/* Order items list container */
+.order-items {
+    margin-bottom: 1.5rem;
+}
+
+/* Individual order item */
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+/* Product image thumbnail */
+.order-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Item information container */
+.item-info {
+    flex: 1;
+}
+
+.item-info h4 {
+    font-size: 1rem;
+    margin: 0 0 0.25rem 0;
+    color: white;
+}
+
+/* Item quantity text */
+.item-qty {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Item price display */
+.item-price {
+    font-weight: 600;
+    color: #fbbf24;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SUMMARY CALCULATIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Visual divider in summary */
+.summary-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 1.5rem 0;
+}
+
+/* Summary line item (subtotal, shipping, etc.) */
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Free shipping indicator */
+.free-shipping {
+    color: #10b981;
+    font-weight: 600;
+}
+
+/* Total amount display */
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #fbbf24;
+}
+
+/* Security information badge */
+.security-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #10b981;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FOOTER & HELP SECTION
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Checkout page footer */
+.checkout-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    color: white;
+}
+
+/* Back to cart link */
+.back-to-cart {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.back-to-cart:hover {
+    color: #fbbf24;
+    text-decoration: none;
+}
+
+/* Help and support text */
+.help-text {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.help-text a {
+    color: #fbbf24;
+    text-decoration: none;
+}
+
+.help-text a:hover {
+    text-decoration: underline;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANIMATIONS & KEYFRAMES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Floating animation for background shapes */
+@keyframes checkoutFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-25px) rotate(90deg);
+    }
+
+    50% {
+        transform: translateY(15px) rotate(180deg);
+    }
+
+    75% {
+        transform: translateY(-15px) rotate(270deg);
+    }
+}
+
+/* Pulsing animation for checkout icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Slide up animation for main content */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade in slide animation for form steps */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Tablet and smaller desktop screens */
+@media (max-width: 1200px) {
+    .checkout-main {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .order-summary {
+        position: static;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+    .checkout-container {
+        padding: 5rem 1rem 1rem;
+    }
+
+    .checkout-header {
+        padding: 2rem;
+    }
+
+    .checkout-title {
+        font-size: 2.5rem;
+    }
+
+    .checkout-form {
+        padding: 2rem;
+    }
+
+    .summary-card {
+        padding: 1.5rem;
+    }
+
+    /* Stack form fields vertically on mobile */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Vertical progress bar on mobile */
+    .progress-bar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .progress-line {
+        width: 2px;
+        height: 30px;
+    }
+
+    /* Stack form navigation vertically */
+    .form-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn-primary,
+    .btn-success {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Stack footer items vertically */
+    .checkout-footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
